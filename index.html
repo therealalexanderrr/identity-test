@@ -3,111 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026 核心人格特质深度测验</title>
+    <title>2026 畅销书灵魂人物契合度测验</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;600&display=swap');
         
         body {
-            font-family: 'Inter', 'PingFang SC', sans-serif;
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
-            height: 100vh;
-            overflow: hidden;
+            font-family: 'Noto Serif SC', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 24px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-        }
-
-        .option-btn {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .option-btn:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .progress-bar {
-            height: 4px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 2px;
+            color: white;
+            margin: 0;
             overflow: hidden;
         }
 
-        .progress-fill {
-            height: 100%;
-            background: white;
-            transition: width 0.5s ease;
+        /* 动态流动渐变背景 */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 80%);
+            animation: move 20s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes move {
+            0% { transform: translate(-25%, -25%); }
+            100% { transform: translate(0%, 0%); }
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .option-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .option-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.02);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .progress-glow {
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+
+        /* 结果头像效果 */
+        .avatar-ring {
+            position: relative;
+            padding: 5px;
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 50%;
         }
     </style>
 </head>
 <body>
 
-    <div id="app" class="w-full max-w-lg px-6">
-        <div class="glass-card p-8 text-white relative overflow-hidden">
+    <div id="app" class="w-full max-w-xl px-4">
+        <div class="glass-panel p-10 relative">
             
             <div id="start-screen" class="text-center">
-                <h1 class="text-3xl font-bold mb-4 tracking-tight">核心人格特质分析</h1>
-                <p class="text-white/70 mb-8 leading-relaxed">基于最新神经科学算法，探索你灵魂深处的镜像人物。</p>
-                <button onclick="startQuiz()" class="px-10 py-4 bg-white text-indigo-600 rounded-full font-bold text-lg hover:scale-105 transition-transform">
-                    开始测评
+                <div class="mb-6 opacity-50 tracking-[0.5em] text-xs">LITERARY ARCHETYPE TEST</div>
+                <h1 class="text-4xl font-light mb-6">测测你是哪位<br><span class="font-bold">畅销书原型人物</span></h1>
+                <p class="text-white/60 mb-10 text-sm leading-loose">通过对行为逻辑与潜意识的 15 维度建模，<br>在文学宇宙中精准定位你的灵魂坐标。</p>
+                <button onclick="startQuiz()" class="px-12 py-4 bg-white text-blue-900 rounded-full font-bold shadow-xl hover:bg-opacity-90 transition-all">
+                    开启深度检索
                 </button>
             </div>
 
             <div id="quiz-screen" class="hidden">
-                <div class="flex justify-between items-center mb-6">
-                    <span id="question-number" class="text-sm font-light tracking-widest opacity-70">QUESTION 01</span>
-                    <div class="w-24 progress-bar">
-                        <div id="progress-fill" class="progress-fill" style="width: 20%"></div>
+                <div class="flex justify-between items-end mb-8">
+                    <div>
+                        <span class="text-3xl font-light italic" id="current-idx">01</span>
+                        <span class="opacity-30 ml-2">/ 15</span>
+                    </div>
+                    <div class="w-32 bg-white/10 h-1 rounded-full overflow-hidden">
+                        <div id="bar" class="bg-white h-full transition-all duration-500 progress-glow" style="width: 6.6%"></div>
                     </div>
                 </div>
-                <h2 id="question-text" class="text-2xl font-semibold mb-8 min-h-[4rem]">正在初始化问题...</h2>
-                <div id="options-container" class="space-y-4">
+                
+                <h2 id="question-text" class="text-xl mb-10 leading-relaxed font-semibold">正在载入题库...</h2>
+                
+                <div id="options" class="space-y-4">
                     </div>
             </div>
 
-            <div id="loading-screen" class="hidden text-center py-12">
-                <div class="inline-block w-12 h-12 border-4 border-white/30 border-t-white rounded-full animate-spin mb-4"></div>
-                <p class="text-lg animate-pulse">正在匹配数据库人格模型...</p>
+            <div id="loading-screen" class="hidden text-center py-20">
+                <div class="relative w-20 h-20 mx-auto mb-8">
+                    <div class="absolute inset-0 border-4 border-white/10 rounded-full"></div>
+                    <div class="absolute inset-0 border-4 border-t-white rounded-full animate-spin"></div>
+                </div>
+                <p class="text-lg tracking-widest animate-pulse font-light" id="loading-msg">正在生成神经网络人格切面...</p>
             </div>
 
             <div id="result-screen" class="hidden text-center">
-                <h3 class="text-sm tracking-[0.2em] opacity-80 mb-2">测评结果</h3>
-                <div class="relative inline-block mb-6">
-                    <div class="w-32 h-32 rounded-full border-4 border-white/50 overflow-hidden mx-auto shadow-2xl">
-                        <img id="result-image" src="" alt="Avatar" class="w-full h-full object-cover">
-                    </div>
+                <div class="avatar-ring w-32 h-32 mx-auto mb-6 shadow-2xl">
+                    <img id="res-img" src="" class="w-full h-full object-cover rounded-full bg-slate-800">
                 </div>
-                <h2 id="result-name" class="text-4xl font-bold mb-2">名字</h2>
-                <p id="result-desc" class="text-white/60 mb-8 italic">"众里寻他千百度，蓦然回首..."</p>
+                <h3 class="text-sm opacity-50 mb-2 font-light tracking-widest">最终匹配原型</h3>
+                <h2 id="res-name" class="text-4xl font-bold mb-4">名字</h2>
+                <p id="res-desc" class="text-white/70 text-sm italic mb-8 px-4 leading-relaxed"></p>
                 
-                <div class="space-y-4 text-left bg-black/10 p-6 rounded-xl">
-                    <p class="text-xs font-bold uppercase tracking-wider mb-2 opacity-50">群体匹配度</p>
-                    <div id="similarity-scores">
-                        </div>
+                <div class="bg-white/5 p-6 rounded-2xl text-left border border-white/5">
+                    <h4 class="text-xs font-bold mb-4 opacity-40 tracking-tighter">匹配数据分析 (Matching Data)</h4>
+                    <div id="stats-container"></div>
                 </div>
 
-                <button onclick="location.reload()" class="mt-8 text-sm opacity-50 hover:opacity-100 transition-opacity">重新测试</button>
+                <button onclick="location.reload()" class="mt-8 text-xs opacity-30 hover:opacity-100 transition-opacity">清除缓存重新检索</button>
             </div>
 
         </div>
@@ -115,96 +130,104 @@
 
     <script>
         const questions = [
-            { q: "在深夜独处时，你更倾向于？", a: ["思考宇宙终极意义", "刷搞笑视频大笑", "网购一些没用的东西", "倒头就睡"] },
-            { q: "面对朋友的误解，你的态度是？", a: ["写三千字长文解释", "直接拉黑，江湖不见", "表面微笑，内心MMP", "无所谓，懂的都懂"] },
-            { q: "如果穿越到古代，你会选择什么职业？", a: ["权倾朝野的谋士", "富甲一方的商贾", "浪迹天涯的剑客", "混吃等死的王爷"] },
-            { q: "当你看到这张试卷时，第一反应是？", a: ["这算法挺高级", "别浪费我时间", "我想看结果是谁", "我选C"] }
+            { q: "在充满未知的迷雾森林中，你会选择？", a: ["寻找高处观察地形", "跟随直觉向前走", "标记走过的每一棵树", "坐下等待迷雾散去"] },
+            { q: "面对突如其来的巨额财富，你第一个念头是？", a: ["实现年少时的疯狂梦想", "隐姓埋名过平静生活", "建立改变世界的基金会", "担心这背后隐藏的陷阱"] },
+            { q: "你更偏爱哪种叙事风格的生活？", a: ["波澜壮阔的英雄史诗", "细腻温婉的散文诗", "逻辑缜密的推理小说", "荒诞不羁的讽刺喜剧"] },
+            { q: "当你在图书馆发现一本没有文字的书，你会？", a: ["认为它是某种密码，尝试破解", "在上面写下自己的故事", "觉得是印刷错误并放回去", "想象书里原本该有的内容"] },
+            { q: "面对不可避免的离别，你会选择？", a: ["隆重的告别仪式", "只留下一个背影", "写一封长信表达心意", "像往常一样说明天见"] },
+            { q: "在一个完美的乌托邦社会里，你感到？", a: ["前所未有的安全感", "无法呼吸的压抑", "想要探寻其背后的真相", "舒适但略显乏味"] },
+            { q: "如果你有一种超能力，你希望是？", a: ["洞悉他人的思想", "抹去痛苦的回忆", "掌控时间的流动", "在平行宇宙间穿梭"] },
+            { q: "你认为一个人最宝贵的特质是？", a: ["极致的理性", "不熄的热忱", "绝对的诚实", "柔软的慈悲"] },
+            { q: "深夜的雨声让你联想到？", a: ["未完成的未了心愿", "洗涤一切的宁静", "某种潜伏的危机感", "童年午睡的温暖"] },
+            { q: "当世界末日来临，你最后会带走？", a: ["一颗植物的种子", "一个装满照片的硬盘", "最心爱的那本书", "最爱的人的手"] },
+            { q: "在社交场合中，你通常扮演？", a: ["掌控节奏的领航员", "冷静的观察者", "温暖的协调者", "幽默的氛围制造机"] },
+            { q: "如果生命是一场博弈，你属于？", a: ["全副武装的激进派", "步步为营的稳健派", "观察破绽的投机派", "不按常理出牌的奇招派"] },
+            { q: "对于“宿命感”这个词，你的理解是？", a: ["必须打破的枷锁", "命中注定的安宁", "强者创造的借口", "一种凄美的人生底色"] },
+            { q: "你最希望在哪种环境下工作？", a: ["摩天大楼的顶端", "充满烟火气的小巷", "寂静无人的实验室", "面朝大海的木屋"] },
+            { q: "最后，你认为你自己是谁？", a: ["正在进化的灵魂", "某个故事的配角", "掌握命运的主角", "平凡却独特的观测者"] }
         ];
 
         const results = [
-            { name: "曹加源", img: "cc.jpg", desc: "由于气质过于出众，极易在人群中被一眼认出。" },
-            { name: "梁佳依", img: "ll.jpg", desc: "拥有独特的感知力，是团队中不可或缺的灵魂人物。" },
-            { name: "陈关馨", img: "gx.jpg", desc: "外表冷静内心狂热，拥有改变周遭能量场的潜质。" },
-            { name: "张勤正", img: "xzz.jpg", desc: "理智与情感的完美结合体，未来的无限可能拥有者。" }
+            { name: "曹加源", img: "cc.jpg", desc: "正如《伟大的盖茨比》中所言，你拥有一种永不磨灭的希望。你的存在就是一种秩序，一种在混沌中依然能保持优雅的意志。" },
+            { name: "梁佳依", img: "ll.jpg", desc: "你是《小王子》般的纯粹存在。在复杂的社会逻辑中，你始终保留着那朵玫瑰的香气，看透本质而依然选择温柔。" },
+            { name: "陈关馨", img: "gx.jpg", desc: "如同《简·爱》中的坚韧，你拥有极高的自我主权。不依附、不将就，你的灵魂深处藏着一座随时可以爆发的火山。" },
+            { name: "张勤正", img: "xzz.jpg", desc: "《福尔摩斯》式的逻辑构建者。你擅长从繁杂的表象中抽丝剥茧，你的理智是这个世界最稳固的锚点。" }
         ];
 
-        let currentQ = 0;
+        let step = 0;
 
         function startQuiz() {
-            fadeOut('start-screen', () => {
-                showQuestion();
-                document.getElementById('quiz-screen').classList.remove('hidden');
+            document.getElementById('start-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const q = questions[step];
+            document.getElementById('current-idx').innerText = (step + 1).toString().padStart(2, '0');
+            document.getElementById('bar').style.width = `${((step + 1) / 15) * 100}%`;
+            document.getElementById('question-text').innerText = q.q;
+            
+            const optBox = document.getElementById('options');
+            optBox.innerHTML = '';
+            q.a.forEach(text => {
+                const b = document.createElement('div');
+                b.className = "option-card p-4 rounded-xl cursor-pointer text-sm font-light";
+                b.innerText = text;
+                b.onclick = next;
+                optBox.appendChild(b);
             });
         }
 
-        function showQuestion() {
-            if (currentQ >= questions.length) {
+        function next() {
+            if (step < 14) {
+                step++;
+                renderQuestion();
+            } else {
                 showLoading();
-                return;
             }
-            const q = questions[currentQ];
-            document.getElementById('question-number').innerText = `QUESTION 0${currentQ + 1}`;
-            document.getElementById('question-text').innerText = q.q;
-            document.getElementById('progress-fill').style.width = `${((currentQ + 1) / questions.length) * 100}%`;
-            
-            const container = document.getElementById('options-container');
-            container.innerHTML = '';
-            q.a.forEach(opt => {
-                const btn = document.createElement('button');
-                btn.className = 'option-btn w-full p-4 rounded-xl text-left border border-white/10';
-                btn.innerText = opt;
-                btn.onclick = () => {
-                    currentQ++;
-                    showQuestion();
-                };
-                container.appendChild(btn);
-            });
         }
 
         function showLoading() {
             document.getElementById('quiz-screen').classList.add('hidden');
             document.getElementById('loading-screen').classList.remove('hidden');
-            setTimeout(showResult, 2000);
+            
+            const msgs = ["量子性格切面扫描中...", "比对文学经典数据库...", "深度分析行为模式...", "正在锁定目标原型..."];
+            let mIdx = 0;
+            const timer = setInterval(() => {
+                document.getElementById('loading-msg').innerText = msgs[mIdx++];
+                if(mIdx >= msgs.length) clearInterval(timer);
+            }, 800);
+
+            setTimeout(showResult, 3500);
         }
 
         function showResult() {
             document.getElementById('loading-screen').classList.add('hidden');
             document.getElementById('result-screen').classList.remove('hidden');
-            
-            // 随机生成一个结果
-            const res = results[Math.floor(Math.random() * results.length)];
-            document.getElementById('result-image').src = res.img;
-            document.getElementById('result-name').innerText = res.name;
-            document.getElementById('result-desc').innerText = res.desc;
 
-            const scoreContainer = document.getElementById('similarity-scores');
-            scoreContainer.innerHTML = '';
-            
-            results.forEach(person => {
-                const isMatch = person.name === res.name;
-                const score = isMatch ? 99.8 : (Math.random() * 30 + 10).toFixed(1);
-                scoreContainer.innerHTML += `
-                    <div class="mb-3">
-                        <div class="flex justify-between text-xs mb-1">
-                            <span>与 ${person.name} 的相似度</span>
-                            <span>${score}%</span>
+            const res = results[Math.floor(Math.random() * results.length)];
+            document.getElementById('res-img').src = res.img;
+            document.getElementById('res-name').innerText = res.name;
+            document.getElementById('res-desc').innerText = res.desc;
+
+            const stats = document.getElementById('stats-container');
+            stats.innerHTML = '';
+            results.forEach(item => {
+                const isUser = item.name === res.name;
+                const percent = isUser ? 99.4 : (Math.random() * 40 + 5).toFixed(1);
+                stats.innerHTML += `
+                    <div class="mb-4">
+                        <div class="flex justify-between text-[10px] mb-1 opacity-60 uppercase tracking-widest">
+                            <span>${item.name}</span>
+                            <span>${percent}%</span>
                         </div>
-                        <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
-                            <div class="bg-white h-full rounded-full" style="width: ${score}%; opacity: ${isMatch ? 1 : 0.4}"></div>
+                        <div class="h-1 bg-white/10 rounded-full overflow-hidden">
+                            <div class="h-full bg-white transition-all duration-1000" style="width: ${percent}%; opacity: ${isUser ? 1 : 0.2}"></div>
                         </div>
                     </div>
                 `;
             });
-        }
-
-        function fadeOut(id, callback) {
-            const el = document.getElementById(id);
-            el.style.opacity = '0';
-            el.style.transition = 'opacity 0.5s ease';
-            setTimeout(() => {
-                el.classList.add('hidden');
-                callback();
-            }, 500);
         }
     </script>
 </body>
