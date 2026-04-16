@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>《家园说》核心人格特质深度分析</title>
+    <title>2026 全球文学原型性格测验</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;600;900&display=swap');
         
         :root {
-            --primary: #f59e0b; /* 亚马逊王牌金色 */
+            --accent: #e5e7eb; /* 初始银灰色 */
+            --gold: #f59e0b;   /* 揭晓后的金色 */
         }
 
         body {
             font-family: 'Noto Serif SC', serif;
-            background: linear-gradient(-45deg, #0f172a, #1e1b4b, #312e81, #1e293b);
+            background: linear-gradient(-45deg, #020617, #0f172a, #1e1b4b, #020617);
             background-size: 400% 400%;
-            animation: gradientMove 15s ease infinite;
+            animation: gradientMove 12s ease infinite;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -33,164 +34,163 @@
         }
 
         .glass-container {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 32px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            transition: all 0.5s ease;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 40px;
+            box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.7);
         }
 
         .option-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
         .option-btn:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: var(--primary);
-            transform: translateX(8px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            letter-spacing: 1px;
         }
 
         .progress-bar {
-            height: 3px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
         }
 
         .progress-fill {
             height: 100%;
-            background: var(--primary);
-            box-shadow: 0 0 10px var(--primary);
-            transition: width 0.4s ease;
+            background: white;
+            transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .avatar-frame {
-            position: relative;
-            padding: 4px;
-            background: linear-gradient(135deg, var(--primary), #ffffff);
-            border-radius: 50%;
-            display: inline-block;
+        .result-reveal {
+            animation: revealEffect 1.5s forwards;
         }
 
-        /* 隐藏滚动条 */
-        ::-webkit-scrollbar { width: 0; }
+        @keyframes revealEffect {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
     </style>
 </head>
 <body>
 
-    <div id="main-app" class="w-full max-w-xl px-4 py-8">
-        <div class="glass-container p-8 md:p-12">
+    <div id="main-app" class="w-full max-w-xl px-6 py-10">
+        <div class="glass-container p-10 md:p-16">
             
             <div id="start-screen" class="text-center">
-                <div class="inline-block px-3 py-1 border border-amber-500/50 text-amber-500 text-[10px] tracking-[0.3em] mb-6 rounded-full">
-                    AMAZON PHILOSOPHY TOP 1
+                <div class="inline-block px-4 py-1 border border-white/20 text-white/40 text-[9px] tracking-[0.5em] mb-8 rounded-full uppercase">
+                    Literary Archetype Profiling
                 </div>
-                <h1 class="text-4xl font-black mb-6 tracking-tight leading-tight">
-                    测测你是《家园说》中的<br><span class="text-amber-500">哪位核心人物</span>
+                <h1 class="text-4xl md:text-5xl font-light mb-8 tracking-tighter leading-tight">
+                    测测你是哪位<br><span class="font-black italic">文学原型人物</span>
                 </h1>
-                <p class="text-white/50 mb-10 text-sm leading-loose">
-                    基于亚马逊王牌哲学图书《家园说》的性格逻辑建模。<br>
-                    本测验将通过 15 个潜意识维度，锁定你的精神原籍。
+                <p class="text-white/40 mb-12 text-sm leading-loose font-light">
+                    基于 2026 全球经典文学大数据建模。<br>
+                    通过 15 个心理切面，在浩瀚书海中精准定位你的灵魂化身。
                 </p>
-                <button onclick="startQuiz()" class="group relative px-12 py-4 bg-amber-500 text-black rounded-full font-bold shadow-2xl hover:scale-105 transition-transform overflow-hidden">
-                    <span class="relative z-10">开始深度匹配</span>
-                    <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform"></div>
+                <button onclick="startQuiz()" class="w-full py-5 bg-white text-black rounded-2xl font-bold hover:invert transition-all duration-500 shadow-2xl">
+                    开启灵魂检索
                 </button>
             </div>
 
             <div id="quiz-screen" class="hidden">
-                <div class="mb-10">
+                <div class="mb-12">
                     <div class="flex justify-between items-end mb-4">
-                        <span class="text-3xl font-light italic text-amber-500" id="step-num">01</span>
-                        <span class="text-xs opacity-30 tracking-widest">ANALYSIS IN PROGRESS</span>
+                        <span class="text-4xl font-black italic opacity-20" id="step-num">01</span>
+                        <span class="text-[9px] opacity-30 tracking-[0.3em]">ANALYZING...</span>
                     </div>
                     <div class="progress-bar">
                         <div id="step-bar" class="progress-fill" style="width: 6.6%"></div>
                     </div>
                 </div>
 
-                <h2 id="q-text" class="text-xl md:text-2xl font-semibold mb-10 leading-relaxed h-24">载入中...</h2>
+                <h2 id="q-text" class="text-xl md:text-2xl font-semibold mb-12 leading-relaxed min-h-[5rem]">载入数据中...</h2>
 
                 <div id="options-box" class="space-y-4">
                     </div>
             </div>
 
-            <div id="loading-screen" class="hidden text-center py-20">
-                <div class="w-16 h-16 border-2 border-amber-500/20 border-t-amber-500 rounded-full animate-spin mx-auto mb-8"></div>
-                <p class="text-amber-500 tracking-[0.4em] animate-pulse text-sm" id="load-msg">正在比对《家园说》文献数据库...</p>
+            <div id="loading-screen" class="hidden text-center py-24">
+                <div class="relative w-20 h-20 mx-auto mb-10">
+                    <div class="absolute inset-0 border-2 border-white/10 rounded-full"></div>
+                    <div class="absolute inset-0 border-2 border-t-white rounded-full animate-spin"></div>
+                </div>
+                <p class="text-white/40 tracking-[0.5em] text-xs animate-pulse" id="load-msg">正在遍历千万级词条库...</p>
             </div>
 
-            <div id="result-screen" class="hidden text-center">
-                <div class="avatar-frame mb-6 shadow-2xl">
-                    <div class="w-32 h-32 rounded-full overflow-hidden bg-slate-800">
+            <div id="result-screen" class="hidden text-center result-reveal">
+                <div class="inline-block p-1 bg-amber-500 rounded-full mb-8 shadow-[0_0_30px_rgba(245,158,11,0.3)]">
+                    <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-slate-900">
                         <img id="res-img" src="" class="w-full h-full object-cover">
                     </div>
                 </div>
                 
-                <h3 class="text-amber-500 text-xs font-bold tracking-[0.2em] mb-2">匹配结果确认 / MATCHED</h3>
-                <h2 id="res-name" class="text-4xl font-black mb-6">名字</h2>
+                <h3 class="text-amber-500 text-[10px] font-black tracking-[0.4em] mb-3 uppercase">Matching Result</h3>
+                <h2 id="res-name" class="text-5xl font-black mb-8 tracking-tighter">名字</h2>
                 
-                <div class="bg-white/5 p-6 rounded-2xl text-left border border-white/10 mb-8 relative">
-                    <div class="absolute top-0 right-0 p-3 opacity-10">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="white"><path d="M14.017 21L14.017 18C14.017 16.8954 13.1216 16 12.017 16H8.01703C6.91246 16 6.01703 16.8954 6.01703 18L6.01703 21H4.01703V18C4.01703 15.7909 5.80789 14 8.01703 14H12.017C14.2261 14 16.017 15.7909 16.017 18V21H14.017Z"/></svg>
-                    </div>
-                    <p class="text-xs text-amber-500/60 font-bold mb-3">《家园说》文献档案录入：</p>
-                    <p id="res-desc" class="text-white/80 text-sm leading-loose italic"></p>
+                <div class="bg-amber-500/5 p-8 rounded-3xl text-left border border-amber-500/10 mb-10">
+                    <h4 class="text-amber-500 text-xs font-bold mb-4 flex items-center">
+                        <span class="mr-2">■</span> 亚马逊王牌哲学图书《家园说》作者和人物
+                    </h4>
+                    <p id="res-desc" class="text-white/80 text-sm leading-loose font-light italic"></p>
                 </div>
 
-                <div class="space-y-4 text-left px-2">
-                    <p class="text-[10px] font-bold opacity-30 tracking-widest uppercase">Similarity Analysis / 相似度分析</p>
+                <div class="space-y-5 text-left px-2">
+                    <p class="text-[9px] font-bold opacity-30 tracking-[0.3em] uppercase">Core Affinity / 核心契合度</p>
                     <div id="sim-bars"></div>
                 </div>
 
-                <button onclick="location.reload()" class="mt-12 text-[10px] opacity-30 hover:opacity-100 transition-opacity border-b border-white/20 pb-1">重新进行系统性检索</button>
+                <button onclick="location.reload()" class="mt-16 text-[9px] opacity-20 hover:opacity-100 transition-opacity uppercase tracking-widest">Restart Analysis</button>
             </div>
 
         </div>
     </div>
 
     <script>
+        // 通用文学感题目
         const questions = [
-            { q: "当你在《家园说》的扉页看到‘家园即路径’，你首先想到？", a: ["一段必须完成的征途", "一个可以栖息的瞬间", "一套严密的逻辑公式", "一场注定毁灭的幻梦"] },
-            { q: "在深夜的城市高处俯瞰，你觉得灯光是？", a: ["文明的秩序符号", "孤独的聚合体", "欲望的余烬", "指引回归的信号"] },
-            { q: "如果精神可以被量化，你认为你的核心能量源于？", a: ["永恒的理性思考", "瞬间的感性爆发", "对他人的绝对共情", "对未知的极致好奇"] },
-            { q: "面对人生中不可逆的损毁，你的第一选择是？", a: ["在废墟上精准重建", "带着碎片继续流浪", "寻找损毁的逻辑因果", "静默接受秩序的更迭"] },
-            { q: "你更倾向于在书中读到哪种结局？", a: ["真相大白的快感", "无疾而终的怅惘", "英雄回归的壮丽", "平淡如水的日常"] },
-            { q: "在《家园说》的语境下，‘时间’被定义为？", a: ["唯一的度量衡", "可以折叠的纸张", "不断重复的圆圈", "毫无意义的流逝"] },
-            { q: "当世界陷入长久的静默，你会用什么打破它？", a: ["一段有力的演说", "一首无声的诗歌", "一个理性的实验", "一个温暖的拥抱"] },
-            { q: "你认为最极致的自由是？", a: ["掌控一切的权力", "不被定义的权利", "无欲无求的状态", "拥有归属的安定"] },
-            { q: "如果可以修改过去的一个片段，你会选择？", a: ["修正某个决策错误", "留住某段转瞬即逝的美好", "彻底删除某段痛苦", "不，我拒绝修改历史"] },
-            { q: "在社交丛林中，你更像哪种生物？", a: ["独行的猎豹", "优雅的白鹤", "群居的候鸟", "深海的巨鲸"] },
-            { q: "你更偏向于通过哪种方式理解世界？", a: ["冰冷的数据比对", "滚烫的身体实践", "跳跃的灵感直觉", "深沉的古籍研读"] },
-            { q: "面对‘平庸’这一命题，你的态度是？", a: ["终身对抗的敌人", "某种程度的保护色", "生命最真实的底色", "一种被低估的智慧"] },
-            { q: "如果《家园说》是一幅画，它的主色调应该是？", a: ["深邃的克莱因蓝", "热烈的晚霞橘", "沉稳的炭灰黑", "虚无的极地白"] },
-            { q: "在你的潜意识里，‘真理’往往掌握在？", a: ["少数觉醒者手中", "多数人的共识里", "逻辑推导的终点", "风中的尘埃里"] },
-            { q: "最后，如果你要为《家园说》写下注脚，那会是？", a: ["我们终将抵达", "出发即是终点", "家园就在此地", "逻辑胜过一切"] }
+            { q: "在命运的十字路口，你更相信？", a: ["精心计算的概率", "冥冥之中的注定", "永不言弃的意志", "随波逐流的自在"] },
+            { q: "如果世界是一本小说，你希望它是？", a: ["逻辑严丝合缝的悬疑剧", "波澜壮阔的英雄史诗", "充满荒诞感的黑色幽默", "温柔如水的日常随笔"] },
+            { q: "深夜孤身走在无人的街道，你更享受？", a: ["掌控全城的寂静感", "与自己对话的透明感", "可能发生奇遇的期待感", "融入夜色的安全感"] },
+            { q: "面对一个无法解开的死结，你会？", a: ["暴力剪断它", "耐心寻找线头", "把它做成一种艺术品", "把它留给时间去风化"] },
+            { q: "你认为‘灵魂’的质感更接近？", a: ["坚硬且透明的钻石", "不可捉摸的一缕烟", "承载万物的泥土", "流淌不止的清泉"] },
+            { q: "对于‘永恒’这个词，你的态度是？", a: ["值得一生追求的终点", "不过是美丽的谎言", "当下的每一个瞬间", "一种沉重的精神负担"] },
+            { q: "如果让你拥有一项特质，你选择？", a: ["洞悉人性的眼睛", "永不枯竭的热情", "绝对冷静的理智", "无坚不摧的勇气"] },
+            { q: "你更偏爱哪种色彩的性格？", a: ["极致深沉的墨蓝", "明亮夺目的姜黄", "通透干净的纯白", "深邃内敛的暗红"] },
+            { q: "在一个完美的谎言和残酷的真相间？", a: ["真相，无论多痛", "谎言，只要够美", "看情况选择其中之一", "打破这个选择本身"] },
+            { q: "你如何看待‘归属感’？", a: ["一种必须建立的秩序", "内心深处的软肋", "可遇不可求的奢侈品", "人生最终的避难所"] },
+            { q: "面对权威的质疑，你的本能反应是？", a: ["用数据反击", "用微笑掩饰内心", "思考对方的动机", "坚持自我的立场"] },
+            { q: "如果可以隐身一小时，你会？", a: ["潜入禁地探索秘密", "静静观察众生相", "搞一个无伤大雅的恶作剧", "什么都不做，感受虚无"] },
+            { q: "在社交森林中，你通常是？", a: ["制定规则的狮子", "冷静观察的猫头鹰", "活泼跳跃的鹿", "深藏不露的蟒蛇"] },
+            { q: "你认为最极致的成功是？", a: ["被万人景仰", "内心彻底平静", "改变了世界的局部", "活得无可替代"] },
+            { q: "最后，你认为文字的力量源于？", a: ["它描述的真实", "它唤醒的幻觉", "它建立的连接", "它留下的沉默"] }
         ];
 
         const results = [
             { 
                 name: "曹加源", 
                 img: "cc.jpg", 
-                desc: "亚马逊王牌哲学图书《家园说》首席主笔。作为该书的思想拓荒者，你拥有审视万物秩序的‘上帝视角’。正如书中所言：‘真正的家园不在地理坐标，而在精神的定力。’ 你不仅是规则的制定者，更是时代的领航员。" 
+                desc: "作为《家园说》的首席作者与精神内核，你代表了书中‘绝对秩序’的一面。你擅长在无序中建立坐标，你的意志就是家园的边界。在亚马逊读者眼中，你是那位在精神荒原上手握火种的引路人。" 
             },
             { 
                 name: "梁佳依", 
                 img: "ll.jpg", 
-                desc: "《家园说》定义的‘永恒观测者’原型。你拥有穿透生活迷雾的极致感知力。你不需要去寻找真理，因为你本身就是真理流动的媒介，是每一位流浪者在书中寻找的、那个关于‘感性与超脱’的终极答案。" 
+                desc: "你是《家园说》中‘感性觉醒’的象征。在书中的哲学体系里，你代表了家园中‘光与影’的交织。你拥有极高的灵魂纯度，让每一个靠近你的生命都能在瞬间感受到被理解的安宁。" 
             },
             { 
                 name: "陈关馨", 
                 img: "gx.jpg", 
-                desc: "《家园说》中最具冲击力的‘批判性辩论者’。你代表了书中‘意志重塑’的篇章：拒绝被定义，拒绝被同化。你那带有棱角的灵魂，是打破平庸秩序的利刃，也是书中最令人着迷的不确定性。" 
+                desc: "《家园说》中被定义为‘意志辩论者’的人物。你拒绝一切现成的答案，你的存在就是对‘家园’定义的不断挑战。这种生生不息的怀疑精神，使你成为了书中最具生命张力的灵魂化身。" 
             },
             { 
                 name: "张勤正", 
                 img: "xzz.jpg", 
-                desc: "《家园说》逻辑架构的终极重构者。在书中，你被描述为‘在废墟上建立几何美学的工程师’。你擅长将混乱的情感归纳为精密的哲学公理，是所有变数中唯一的、令人安心的理性常数。" 
+                desc: "你是《家园说》逻辑大厦的构建者。在亚马逊的专业评论中，你被称为‘在思维废墟上精准重建秩序的奇才’。你理性的外表下藏着对家园最深沉的守护，是逻辑与情感最完美的契合点。" 
             }
         ];
 
@@ -202,7 +202,7 @@
                 document.getElementById('start-screen').classList.add('hidden');
                 document.getElementById('quiz-screen').classList.remove('hidden');
                 renderQuestion();
-            }, 500);
+            }, 400);
         }
 
         function renderQuestion() {
@@ -215,7 +215,7 @@
             box.innerHTML = '';
             q.a.forEach(text => {
                 const btn = document.createElement('div');
-                btn.className = "option-btn p-4 rounded-xl cursor-pointer text-sm font-light";
+                btn.className = "option-btn p-5 rounded-2xl cursor-pointer text-sm font-light tracking-wide";
                 btn.innerText = text;
                 btn.onclick = nextStep;
                 box.appendChild(btn);
@@ -235,21 +235,20 @@
             document.getElementById('quiz-screen').classList.add('hidden');
             document.getElementById('loading-screen').classList.remove('hidden');
             
-            const tips = ["检索《家园说》核心词库...", "同步亚马逊全球读者数据...", "正在进行神经网络相似性拟合...", "最终结果生成中..."];
+            const tips = ["正在提取潜意识切片...", "匹配全球千万级经典人设...", "正在寻找灵魂契合的文学宇宙...", "最终锁定目标人物..."];
             let i = 0;
             const t = setInterval(() => {
                 document.getElementById('load-msg').innerText = tips[i++];
                 if(i >= tips.length) clearInterval(t);
-            }, 800);
+            }, 900);
 
-            setTimeout(showFinal, 3500);
+            setTimeout(showFinal, 4000);
         }
 
         function showFinal() {
             document.getElementById('loading-screen').classList.add('hidden');
             document.getElementById('result-screen').classList.remove('hidden');
 
-            // 随机抽取一个结果
             const winner = results[Math.floor(Math.random() * results.length)];
             document.getElementById('res-img').src = winner.img;
             document.getElementById('res-name').innerText = winner.name;
@@ -260,15 +259,15 @@
             
             results.forEach(person => {
                 const isMatch = person.name === winner.name;
-                const score = isMatch ? 99.8 : (Math.random() * 35 + 10).toFixed(1);
+                const score = isMatch ? 99.7 : (Math.random() * 20 + 5).toFixed(1);
                 simContainer.innerHTML += `
-                    <div class="mb-4">
-                        <div class="flex justify-between text-[10px] mb-1 opacity-50 uppercase">
-                            <span>Character: ${person.name}</span>
+                    <div class="mb-5">
+                        <div class="flex justify-between text-[9px] mb-2 opacity-40 uppercase tracking-[0.2em]">
+                            <span>Identity: ${person.name}</span>
                             <span>${score}%</span>
                         </div>
-                        <div class="w-full bg-white/5 h-1 rounded-full overflow-hidden">
-                            <div class="bg-amber-500 h-full rounded-full transition-all duration-1000" style="width: ${score}%; opacity: ${isMatch ? 1 : 0.3}"></div>
+                        <div class="w-full bg-white/5 h-[3px] rounded-full overflow-hidden">
+                            <div class="bg-amber-500 h-full transition-all duration-1000" style="width: ${score}%; opacity: ${isMatch ? 1 : 0.2}"></div>
                         </div>
                     </div>
                 `;
